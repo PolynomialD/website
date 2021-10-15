@@ -1,10 +1,11 @@
-const WowApiRepository = require('./repositories/WowApiRepository')
+class Api {
+  constructor (repository) {
+    this.wowApiRepository = repository
+  }
 
-async function getWeapon(weaponId) {
-  const wowApiRepository = new WowApiRepository()
-  const response = await wowApiRepository.get(`item/${weaponId}`)
-  const weapon = await response.json()
-  return weapon
+  async getWeapon(weaponId) {
+    return await this.wowApiRepository.get(`item/${weaponId}`)
+  }
 }
 
-module.exports = getWeapon
+module.exports = Api

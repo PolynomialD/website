@@ -8,7 +8,13 @@ const indexRouter = require('./routes/index')
 const usersRouter = require('./routes/users')
 const wowRouter = require('./routes/wow')
 
+var Api = require('./api')
+const WowApiRepository = require('./repositories/WowApiRepository')
+
 const app = express()
+
+const wowApiRepository = new WowApiRepository()
+const api = new Api(wowApiRepository)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -22,7 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/', indexRouter)
 app.use('/users', usersRouter)
-app.use('/wow', wowRouter)
+app.use('/wow', wowRouter(api))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
