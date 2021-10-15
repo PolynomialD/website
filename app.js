@@ -17,7 +17,7 @@ const wowApiRepository = new WowApiRepository()
 const api = new Api(wowApiRepository)
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'))
+app.set('views', './views')
 app.set('view engine', 'pug')
 
 app.use(logger('dev'))
