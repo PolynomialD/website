@@ -4,11 +4,11 @@ class WowApiRepository {
   constructor () {
     this.accessToken = ''
     this.baseUrl = 'https://us.api.blizzard.com/data/wow/'
-    this.queryParams = `?namespace=static-classic-us&locale=en_US&access_token=`
+    this.baseQueryParams = `?namespace=static-classic-us&locale=en_US&access_token=`
   }
 
-  async get (path) {
-    const url = `${this.baseUrl}${path}${this.queryParams}${this.accessToken}`
+  async get (path, queryParams = '') {
+    const url = `${this.baseUrl}${path}${this.baseQueryParams}${this.accessToken}${queryParams}`
     const response = await fetch(url)
     console.log(`url: ${url}, response: ${response.status}`)
     if (response.ok) {

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  <form action="/wow/search">
+    <input type="radio" id="legendary" name="quality" value="LEGENDARY">
+    <label for="legendary">Legendary</label><br>
+
+    <input type="radio" id="epic" name="quality" value="EPIC">
+    <label for="epic">Epic</label><br>
+
+    <input type="radio" id="rare" name="quality" value="RARE">
+    <label for="rare">Rare</label><br>
+
+    <input type="radio" id="common" name="quality" value="COMMON">
+    <label for="common">Common</label><br>
+
+    <input type="radio" id="uncommon" name="quality" value="UNCOMMON">
+    <label for="uncommon">Uncommon</label><br>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  -
+  each result in results
+    li
+      a.button(href='/wow/getweapon/'+result.data.id)= result.data.name.en_GB
+
